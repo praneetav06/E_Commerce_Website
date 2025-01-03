@@ -1,5 +1,6 @@
 import Navbar from './Components/Navbar/Navbar.jsx';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import './App.css';
 import Product from './Pages/Product.jsx';
 import Cart from './Pages/Cart.jsx';
 import LoginSignup from './Pages/LoginSignup.jsx';
@@ -26,4 +27,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
