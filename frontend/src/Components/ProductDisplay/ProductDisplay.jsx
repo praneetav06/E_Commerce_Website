@@ -13,7 +13,7 @@ const ProductDisplay = (props) => { //mount the component in product.jsx
                     <img src={product.image} alt="image" />
                     <img src={product.image} alt="image" />
                 </div>
-                <div className="productdisplay img">
+                <div className="productdisplay-img">
                     <img className='productdisplay-main-img' src={product.image} alt="image" />
                 </div>
             </div>
