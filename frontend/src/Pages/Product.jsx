@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import {shopContext} from '../Context/ShopContext';
+import {ShopContext} from '../Context/ShopContext.jsx';
 import {useParams} from 'react-router-dom';
 import BreadCrumbs from '../Components/BreadCrumbs/BreadCrumbs.jsx';
 import ProductDisplay from '../Components/ProductDisplay/ProductDisplay.jsx';
 import DescriptionBox from '../Components/DescriptionBox/DescriptionBox.jsx';
 import RelatedProducts from '../Components/RelatedProducts/RelatedProducts.jsx';
 function Product() {
-    const {all_product} = useContext(shopContext); //string
+    const {all_product} = useContext(ShopContext); //string
     const {productId} = useParams();
     const product = all_product.find((e) => e.id === Number(productId)); //number
     return (
