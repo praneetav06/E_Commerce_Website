@@ -5,10 +5,7 @@ const BreadCrumbs = (props) => { //mount the component in product page
     const {product} = props;
     return (
         <div className="breadcrumb">
-            HOME <img src={arrow_icon} alt="arrow_icon" /> 
-            SHOP <img src={arrow_icon} alt="arrow_icon" />
-            {product.category} <img src={arrow_icon} alt="arrow_icon" />
-            {product.name}
+            HOME <img src={arrow_icon} alt="arrow_icon" /> SHOP <img src={arrow_icon} alt="arrow_icon" /> {product.category} <img src={arrow_icon} alt="arrow_icon" /> {product.name}
         </div>
     )
 }
