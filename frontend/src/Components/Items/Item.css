@@ -26,7 +26,7 @@
   transform: scale(1.05);
   transition: 0.5s;
 }
-@media (max-width: 1280px) {
+@media screen and (max-width: 1280px) {
   .item {
     width: 220px;
     font-size: 15px;
@@ -38,7 +38,7 @@
     font-size: 15px;
   }
 }
-@media (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .item {
     width: 170px;
     font-size: 15px;
@@ -50,7 +50,7 @@
     font-size: 15px;
   }
 }
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   .item {
     width: 120px;
     font-size: 12px;
@@ -62,7 +62,7 @@
     font-size: 12px;
   }
 }
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
   .item {
     width: 160px;
   }

@@ -54,7 +54,7 @@
   height: 700px;
   width: 600px;
 }
-@media (max-width: 1280px) {
+@media screen and (max-width: 1280px) {
   .hero-left {
     padding-left: 100px;
   }
@@ -79,7 +79,7 @@
     height: 500px;
   }
 }
-@media (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .hero-left {
     padding-left: 80px;
   }
@@ -102,7 +102,7 @@
     height: 400px;
   }
 }
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   .hero-left {
     padding-left: 30px;
   }
@@ -125,7 +125,7 @@
     height: 350px;
   }
 }
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
   .hero {
     flex-direction: column;
   }
