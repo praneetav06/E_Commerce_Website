@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path"); // gain access to the backend directory
 const cors = require("cors");
-const { log } = require("console");
 
 app.use(express.json()); // request from response will be automatically parsed to json
 app.use(cors()); // React.js project will connect to express.js at 4000
@@ -66,7 +65,7 @@ const Product = mongoose.model("Product", {
   },
   date: {
     type: Date,
-    default: date.now,
+    default: Date.now,
   },
   available: {
     type: Boolean,
@@ -99,6 +98,23 @@ app.post("/addproduct", async (req, res) => {
     success: true,
     name: req.body.name,
   });
+});
+
+//Creating API for deleting products
+app.post("/removeproduct", async (req, res) => {
+  await Product.findOneAndDelete({ id: req.body.id });
+  console.log("Removed");
+  res.json({
+    success: true,
+    name: req.body.name,
+  });
+});
+
+//Creating API for getting all products
+app.get("/allproducts", async (req, res) => {
+  let products = await Product.find({});
+  console.log("All products fetched");
+  res.send(products);
 });
 
 //API Connection
