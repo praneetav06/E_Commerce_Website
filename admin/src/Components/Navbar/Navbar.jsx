@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
-// import navlogo from '../../assets/logo.png';
-// import navProfile from '../../assets/nav_dropdown.png';
+import navlogo from '../../assets/nav-logo.svg';
+import navProfile from '../../assets/nav-profile.svg';
 
 const Navbar = () => { // mount the component in app.jsx
     return (
@@ -12,5 +12,4 @@ const Navbar = () => { // mount the component in app.jsx
     )
 }
 
-export default Navbar
- className='navbar'
+export default Navbar;
