@@ -1,11 +1,12 @@
 import React from 'react'
 import './Admin.css';
-const Admin = () => {
+import Sidebar from '../../Components/Sidebar/Sidebar';
+const Admin = () => { // mount the component in app.jsx
     return (
         <div className='admin'>
-            
+            <Sidebar />
         </div>
     )
 }
 
-export default Admin 
+export default Admin; 

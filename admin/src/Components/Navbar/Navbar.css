@@ -17,4 +17,10 @@
   .navbar {
     padding: 15px 30px;
   }
+  .nav-logo {
+    width: 150px;
+  }
+  .nav-profile {
+    width: 60px;
+  }
 }
