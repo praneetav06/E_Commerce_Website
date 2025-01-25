@@ -126,6 +126,80 @@ app.listen(port, (error) => {
   }
 });
 
+//creating Schema for user model
+const Users = mongoose.model("Users", {
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: {
+    type: String,
+  },
+  cartData: {
+    type: Object,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+//Creating endpoint for registering the user
+app.post("/signup", async (req, res) => {
+  let check = await Users.findOne({ email: req.body.email }); //check if the user already has an account
+  if (check) {
+    return res.status(400).json({
+      success: false,
+      errors: "Existing user found with the same E-mail Address",
+    });
+  } // send error message in case the user already exists with the same email
+  let cart = {}; // if no user then create an empty cart
+  for (let i = 0; i < 300; i++) {
+    cart[i] = 0;
+  }
+  const user = new Users({
+    name: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    cartData: cart,
+  }); //create the user
+  await user.save(); // save the user in the database
+  const data = {
+    // create a token using this object
+    user: {
+      // user is the key
+      id: user.id, //object with the id of user.id
+    },
+  };
+  const token = jwt.sign(data, "secret_ecom"); //created token and added salt
+  res.json({ success: true, token }); //set the response
+});
+
+//Creating endpoint for user login
+app.post("/login", async (req, res) => {
+  let user = await Users.findOne({ email: req.body.email }); //user related to the id will be stored in the variable
+  if (user) {
+    const passCompare = req.body.password === user.password; //compare the password from the API and the registered user in the database
+    if (passCompare) {
+      //if the pwd is true then it will create a user object
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const token = jwt.sing(data, "secret_ecom");
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, errors: "Wrong Password" });
+    }
+  } else {
+    res.json({ success: false, errors: "Wrong E-mail Address" });
+  }
+});
+
 app.get("/", (req, res) => {
   res.send("Express App is running");
 });
