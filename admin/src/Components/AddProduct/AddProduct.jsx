@@ -25,7 +25,7 @@ const AddProduct = () => {
         console.log(productDetails);
         let responseData;
         let product = productDetails;
-        let formData = new formData();
+        let formData = new FormData();
         formData.append('product', image);
         await fetch('http://localhost:4000/uploads', {
             method: 'POST',
@@ -33,7 +33,7 @@ const AddProduct = () => {
                 Accept: 'application/json',
             },
             body: formData,
-        }).then((res) => res.json()).then((data)=>{responseData=data});
+        }).then((res) => res.json()).then((data) => {responseData = data});
         if(responseData.success) {
             product.image = responseData.image_url;
             console.log(product);
@@ -80,7 +80,7 @@ const AddProduct = () => {
                 </label>
                 <input onChange={imageHandler} type="file" name="image" id="file-input" hidden />
             </div>
-            <button onClick={()=>{AddProduct()}} className="addproduct-btn">ADD</button>
+            <button onClick={()=>{Add_Product()}} className="addproduct-btn">ADD</button>
         </div>
     )
 }
