@@ -117,6 +117,14 @@ app.get("/allproducts", async (req, res) => {
   res.send(products);
 });
 
+//creating endpoint for newcollection data
+app.get("/newcollections", async (req, res) => {
+  let products = await Product.find({}); //stored all the products
+  let newcollection = products.slice(1).slice(-8); //added new products in newCollection
+  console.log("NewCollection Fetched");
+  res.send(newcollection);
+});
+
 //API Connection
 app.listen(port, (error) => {
   if (!error) {
@@ -190,7 +198,7 @@ app.post("/login", async (req, res) => {
           id: user.id,
         },
       };
-      const token = jwt.sing(data, "secret_ecom");
+      const token = jwt.sign(data, "secret_ecom");
       res.json({ success: true, token });
     } else {
       res.json({ success: false, errors: "Wrong Password" });
