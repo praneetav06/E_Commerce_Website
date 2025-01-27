@@ -125,6 +125,14 @@ app.get("/newcollections", async (req, res) => {
   res.send(newcollection);
 });
 
+//creating endpoint for popular in womens section
+app.get("/popularinwomen", async (req, res) => {
+  let products = await Product.find({ category: "women" }); //search for women category in product schema and then add all the products
+  let popular_in_women = products.slice(0, 4);
+  console.log("Popular in women fetched");
+  res.send(popular_in_women);
+});
+
 //API Connection
 app.listen(port, (error) => {
   if (!error) {
