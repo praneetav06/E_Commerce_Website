@@ -28,7 +28,6 @@
 .loginsignup-fields input {
   height: 70px;
   width: 100%;
-  /* padding-left: 20px; */
   border: 1px solid #c9c9c9;
   outline: none;
   color: #5c5c5c;
@@ -75,6 +74,7 @@
     width: auto;
     max-width: 500px;
     max-height: 500px;
+    padding-bottom: 50px;
   }
   .loginsignup-container h1 {
     margin: 10px 0px;
@@ -92,7 +92,7 @@
   }
   .loginsignup-login {
     font-size: 13px;
-    padding: 0;
+    padding: 15px;
   }
   .loginsignup-agree {
     font-size: 13px;
