@@ -134,7 +134,7 @@
     transition: 0.5s;
   }
   .nav-menu {
-    display: flex;
+    display: none;
     height: 80px;
     width: 100%;
     position: absolute;
