@@ -15,7 +15,7 @@
   height: 165px;
 }
 .productdisplay-main-img {
-  width: 585px;
+  width: 500px;
   height: 700px;
 }
 .productdisplay-right {
@@ -267,5 +267,8 @@
   }
   .productdisplay-right-category {
     font-size: 15px;
+  }
+  .footer {
+    margin-top: 250px;
   }
 }
