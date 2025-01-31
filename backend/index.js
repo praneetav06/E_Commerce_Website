@@ -11,9 +11,7 @@ app.use(express.json()); // request from response will be automatically parsed t
 app.use(cors()); // React.js project will connect to express.js at 4000
 
 // database connection with MongoDB
-mongoose.connect(
-  "mongodb+srv://praneetav06:qvvbSMuybRbdBsdm@e-commerce.rtb68.mongodb.net/e-commerce"
-);
+mongoose.connect(process.env.ATLAS_DB);
 
 //Image Storage Engine
 const storage = multer.diskStorage({
