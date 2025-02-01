@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 function NewCollections() {//mount the component in shop.jsx
     const [new_collection, setNewCollection] = useState([]);
     useEffect(()=> {
-        fetch('http://localhost:4000/newcollections')
+        fetch('https://e-commerce-website-backend-1sg4.onrender.com/newcollections')
         .then((res)=> res.json())
         .then((data)=> setNewCollection(data));
     }, []);
