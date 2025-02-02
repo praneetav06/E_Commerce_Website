@@ -34,7 +34,7 @@ app.use("/images", express.static("uploads/images"));
 app.post("/uploads", uploads.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `https://e-commerce-website-backend-1sg4.onrender.com/images/${req.file.filename}`,
+    image_url: `https://e-commerce-website-backend-1sg4.onrender.com/uploads/images/${req.file.filename}`,
   });
 });
 
