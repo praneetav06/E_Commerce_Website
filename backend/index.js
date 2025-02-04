@@ -9,9 +9,7 @@ const cors = require("cors");
 
 app.use("/images", express.static(path.join(__dirname, "/uploads/images")));
 app.use(express.json()); // request from response will be automatically parsed to json
-app.use(
-  cors({ origin: "https://e-commerce-website-frontend-c4fl.onrender.com" })
-); // React.js project will connect to express.js at 4000
+app.use(cors()); // React.js project will connect to express.js at 4000
 
 // database connection with MongoDB
 mongoose.connect(process.env.ATLAS_DB);
