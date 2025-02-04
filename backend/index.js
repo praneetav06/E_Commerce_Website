@@ -7,6 +7,7 @@ const multer = require("multer");
 const path = require("path"); // gain access to the backend directory
 const cors = require("cors");
 
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(express.json()); // request from response will be automatically parsed to json
 app.use(
   cors({ origin: "https://e-commerce-website-frontend-c4fl.onrender.com" })
