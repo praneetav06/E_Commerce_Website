@@ -27,3 +27,9 @@ This is a fully functional **E-Commerce Website** built using the **MERN (MongoD
 
 - Manage users, products, orders, and inventory.
 - Perform CRUD operations on products.
+
+## Deployment 
+- This website is deployed on Render
+- https://e-commerce-website-frontend-c4fl.onrender.com
+- https://e-commerce-website-backend-1sg4.onrender.com
+- https://e-commerce-website-admin-xxpg.onrender.com
