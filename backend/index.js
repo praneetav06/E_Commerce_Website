@@ -7,6 +7,7 @@ const app = express();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const { cloudinary, storage } = require("../backend/cloudConfig.js");
 const path = require("path"); // gain access to the backend directory
 const cors = require("cors");
 
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.ATLAS_DB);
 
 //Image Storage Engine
-const storage = multer.diskStorage({
+const localStorage = multer.diskStorage({
   destination: "./uploads/images",
   filename: (req, file, cb) => {
     return cb(
@@ -29,7 +30,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const uploads = multer({ storage: storage });
+const uploads = multer({ storage: localStorage });
 
 //Creating uploads endpoint for images
 app.use("/images", express.static("uploads/images"));
@@ -51,8 +52,8 @@ const Product = mongoose.model("Product", {
     required: true,
   },
   image: {
-    type: String,
-    required: true,
+    url: String,
+    filename: String,
   },
   category: {
     type: String,
@@ -76,7 +77,7 @@ const Product = mongoose.model("Product", {
   },
 });
 
-app.post("/addproduct", async (req, res) => {
+app.post("/addproduct", uploads.single("product"), async (req, res) => {
   let products = await Product.find({});
   let id;
   if (products.length > 0) {
@@ -89,7 +90,10 @@ app.post("/addproduct", async (req, res) => {
   const product = new Product({
     id: id,
     name: req.body.name,
-    image: req.body.image,
+    image: {
+      url: req.file.path, // Cloudinary URL
+      filename: req.file.filename, // Cloudinary public_id
+    },
     category: req.body.category,
     new_price: req.body.new_price,
     old_price: req.body.old_price,
