@@ -7,13 +7,13 @@ const app = express();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
 const path = require("path"); // gain access to the backend directory
 const cors = require("cors");
 
 app.use("/images", express.static(path.join(__dirname, "/uploads/images")));
 app.use(express.json()); // request from response will be automatically parsed to json
 app.use(cors()); // React.js project will connect to express.js at 4000
+app.use(express.urlencoded({ extended: true }));
 
 // database connection with MongoDB
 mongoose.connect(process.env.ATLAS_DB);
