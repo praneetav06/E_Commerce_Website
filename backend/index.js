@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.ATLAS_DB);
 
 //Image Storage Engine
-const localStorage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: "./uploads/images",
   filename: (req, file, cb) => {
     return cb(
@@ -30,7 +30,7 @@ const localStorage = multer.diskStorage({
   },
 });
 
-const uploads = multer({ storage: localStorage });
+const uploads = multer({ storage });
 
 //Creating uploads endpoint for images
 app.use("/images", express.static("uploads/images"));
@@ -104,6 +104,8 @@ app.post("/addproduct", uploads.single("product"), async (req, res) => {
   res.json({
     success: true,
     name: req.body.name,
+    image_url: product.image.url,
+    image_filename: product.image.filename,
   });
 });
 

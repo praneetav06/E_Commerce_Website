@@ -48,7 +48,7 @@ const AddProduct = () => {
                 data.success?alert("Product Added"):alert("Failed");
             })
         }
-    }
+    }    
 
     return (
         <div className='add-product'>
