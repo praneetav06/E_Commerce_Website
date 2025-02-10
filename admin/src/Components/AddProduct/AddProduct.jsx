@@ -26,7 +26,7 @@ const AddProduct = () => {
         let responseData;
         let product = productDetails;
         let formData = new FormData();
-        formData.append('product', image);
+        formData.append("product", image);
         await fetch('https://e-commerce-website-backend-1sg4.onrender.com/uploads', {
             method: 'POST',
             headers: {

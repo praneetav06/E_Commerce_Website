@@ -10,34 +10,40 @@ const multer = require("multer");
 const { cloudinary, storage } = require("../backend/cloudConfig.js");
 const path = require("path"); // gain access to the backend directory
 const cors = require("cors");
+const upload = multer({ storage }); // Use Cloudinary storage
 
 app.use("/images", express.static(path.join(__dirname, "/uploads/images")));
 app.use(express.json()); // request from response will be automatically parsed to json
-app.use(cors()); // React.js project will connect to express.js at 4000
+app.use(
+  cors({
+    origin: "*", // Allow all origins (for development)
+    methods: ["GET", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type", "auth-token"],
+  })
+); // React.js project will connect to express.js at 4000
 app.use(express.urlencoded({ extended: true }));
 
 // database connection with MongoDB
 mongoose.connect(process.env.ATLAS_DB);
 
 //Image Storage Engine
-const storage = multer.diskStorage({
-  destination: "./uploads/images",
-  filename: (req, file, cb) => {
-    return cb(
-      null,
-      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
-
-const uploads = multer({ storage });
+// const storage = multer.diskStorage({
+//   destination: "./uploads/images",
+//   filename: (req, file, cb) => {
+//     return cb(
+//       null,
+//       `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+//     );
+//   },
+// });
 
 //Creating uploads endpoint for images
 app.use("/images", express.static("uploads/images"));
-app.post("/uploads", uploads.single("product"), (req, res) => {
+app.post("/uploads", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `https://e-commerce-website-backend-1sg4.onrender.com/images/${req.file.filename}`,
+    image_url: req.file.path,
+    image_filename: req.file.filename,
   });
 });
 
@@ -77,7 +83,7 @@ const Product = mongoose.model("Product", {
   },
 });
 
-app.post("/addproduct", uploads.single("product"), async (req, res) => {
+app.post("/addproduct", upload.single("product"), async (req, res) => {
   let products = await Product.find({});
   let id;
   if (products.length > 0) {
