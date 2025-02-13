@@ -10,6 +10,7 @@ This is a fully functional **E-Commerce Website** built using the **MERN (MongoD
 - **Shopping Cart** with Add/Remove Items
 - **Admin Panel** for managing products, users, and orders
 - **RESTful API** with Express & MongoDB
+- **Signup/Login/Logout** funcationality that affects user data, cart totals and cart products
 
 ## 🏗 Tech Stack
 
