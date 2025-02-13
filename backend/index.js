@@ -39,12 +39,13 @@ mongoose.connect(process.env.ATLAS_DB);
 
 //Creating uploads endpoint for images
 app.use("/images", express.static("uploads/images"));
-app.post("/uploads", upload.single("product"), (req, res) => {
+app.post("/uploads", upload.single("product[image]"), (req, res) => {
   res.json({
     success: 1,
     image_url: req.file.path,
     image_filename: req.file.filename,
   });
+  res.send(req.file);
 });
 
 //Schema for creating products
