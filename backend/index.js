@@ -7,35 +7,33 @@ const app = express();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
-const { cloudinary, storage } = require("../backend/cloudConfig.js");
 const path = require("path"); // gain access to the backend directory
 const cors = require("cors");
-const upload = multer({ storage }); // Use Cloudinary storage
 
-app.use("/images", express.static(path.join(__dirname, "/uploads/images")));
-app.use(express.json()); // request from response will be automatically parsed to json
-app.use(
-  cors({
-    origin: "*", // Allow all origins (for development)
-    methods: ["GET", "POST", "DELETE"],
-    allowedHeaders: ["Content-Type", "auth-token"],
-  })
-); // React.js project will connect to express.js at 4000
+// app.use("/images", express.static(path.join(__dirname, "/uploads/images")));
+// app.use(express.json()); // request from response will be automatically parsed to json
+// app.use(
+//   cors({
+//     origin: "*", // Allow all origins (for development)
+//     methods: ["GET", "POST", "DELETE"],
+//     allowedHeaders: ["Content-Type", "auth-token"],
+//   })
+// ); // React.js project will connect to express.js at 4000
 app.use(express.urlencoded({ extended: true }));
 
 // database connection with MongoDB
 mongoose.connect(process.env.ATLAS_DB);
 
-//Image Storage Engine
-// const storage = multer.diskStorage({
-//   destination: "./uploads/images",
-//   filename: (req, file, cb) => {
-//     return cb(
-//       null,
-//       `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-//     );
-//   },
-// });
+// Image Storage Engine
+const storage = multer.diskStorage({
+  destination: "./uploads/images",
+  filename: (req, file, cb) => {
+    return cb(
+      null,
+      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
 
 //Creating uploads endpoint for images
 app.use("/images", express.static("uploads/images"));
@@ -59,8 +57,8 @@ const Product = mongoose.model("Product", {
     required: true,
   },
   image: {
-    url: String,
-    filename: String,
+    type: String,
+    required: true,
   },
   category: {
     type: String,
@@ -97,10 +95,7 @@ app.post("/addproduct", upload.single("product"), async (req, res) => {
   const product = new Product({
     id: id,
     name: req.body.name,
-    image: {
-      url: req.file.path, // Cloudinary URL
-      filename: req.file.filename, // Cloudinary public_id
-    },
+    image: req.file.filename,
     category: req.body.category,
     new_price: req.body.new_price,
     old_price: req.body.old_price,
@@ -111,8 +106,6 @@ app.post("/addproduct", upload.single("product"), async (req, res) => {
   res.json({
     success: true,
     name: req.body.name,
-    image_url: product.image.url,
-    image_filename: product.image.filename,
   });
 });
 
