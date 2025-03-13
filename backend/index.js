@@ -10,15 +10,6 @@ const multer = require("multer");
 const path = require("path"); // gain access to the backend directory
 const cors = require("cors");
 
-// app.use("/images", express.static(path.join(__dirname, "/uploads/images")));
-// app.use(express.json()); // request from response will be automatically parsed to json
-// app.use(
-//   cors({
-//     origin: "*", // Allow all origins (for development)
-//     methods: ["GET", "POST", "DELETE"],
-//     allowedHeaders: ["Content-Type", "auth-token"],
-//   })
-// ); // React.js project will connect to express.js at 4000
 app.use(express.urlencoded({ extended: true }));
 
 // database connection with MongoDB
@@ -37,7 +28,7 @@ const storage = multer.diskStorage({
 
 //Creating uploads endpoint for images
 app.use("/images", express.static("uploads/images"));
-app.post("/uploads", upload.single("product[image]"), (req, res) => {
+app.post("/uploads", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
     image_url: req.file.path,
