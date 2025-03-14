@@ -10,6 +10,8 @@ const multer = require("multer");
 const path = require("path"); // gain access to the backend directory
 const cors = require("cors");
 
+app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 // database connection with MongoDB
