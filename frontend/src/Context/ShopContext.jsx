@@ -14,11 +14,11 @@ const ShopContextProvider = (props) => {
   const [all_product, setAll_Product] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
   useEffect(() => {
-    fetch("https://e-commerce-website-backend-1sg4.onrender.com/allproducts")
+    fetch("http://localhost:4000/allproducts")
       .then((res) => res.json())
       .then((data) => setAll_Product(data));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://e-commerce-website-backend-1sg4.onrender.com/getcart", {
+      fetch("http://localhost:4000/getcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -36,7 +36,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://e-commerce-website-backend-1sg4.onrender.com/addtocart", {
+      fetch("http://localhost:4000/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -52,18 +52,15 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch(
-        "https://e-commerce-website-backend-1sg4.onrender.com/removefromcart",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/form-data",
-            "auth-token": `${localStorage.getItem("auth-token")}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ itemId: itemId }),
-        }
-      )
+      fetch("http://localhost:4000/removefromcart", {
+        method: "POST",
+        headers: {
+          Accept: "application/form-data",
+          "auth-token": `${localStorage.getItem("auth-token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ itemId: itemId }),
+      })
         .then((res) => res.json())
         .then((data) => console.log(data));
     }
