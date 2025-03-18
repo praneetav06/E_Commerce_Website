@@ -19,7 +19,7 @@ mongoose.connect(process.env.ATLAS_DB);
 
 // Image Storage Engine
 const storage = multer.diskStorage({
-  destination: "uploads/images",
+  destination: "./uploads/images",
   filename: (req, file, cb) => {
     return cb(
       null,
