@@ -19,7 +19,7 @@ mongoose.connect(process.env.ATLAS_DB);
 
 // Image Storage Engine
 const storage = multer.diskStorage({
-  destination: "./uploads/images",
+  destination: "uploads",
   filename: (req, file, cb) => {
     return cb(
       null,
@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 //Creating uploads endpoint for images
-app.use("/images", express.static("uploads/images"));
+app.use("/images", express.static("uploads"));
 
 app.post("/uploads", upload.single("product"), (req, res) => {
   res.json({
