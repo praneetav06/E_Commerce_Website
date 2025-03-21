@@ -71,25 +71,36 @@ function Navbar() {
           {menu === "Kids" ? <hr /> : <></>}
         </li>
       </ul>
-      <div className="nav-login-cart">
-        {localStorage.getItem("auth-token") ? (
-          <button
-            onClick={() => {
-              localStorage.removeItem("auth-token");
-              window.location.replace("/");
-            }}
-          >
-            Logout
-          </button>
-        ) : (
-          <Link to="/Login">
-            <button>Login</button>
+      <div className="navbar-right">
+        <div className="nav-login-cart">
+          {localStorage.getItem("auth-token") ? (
+            <button
+              onClick={() => {
+                localStorage.removeItem("auth-token");
+                window.location.replace("/");
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/Login">
+              <button>Login</button>
+            </Link>
+          )}
+          {localStorage.getItem("auth-token") ? (
+            <button className="admin-panel">
+              <a href="#" target="_blank">
+                Admin
+              </a>
+            </button>
+          ) : (
+            <></>
+          )}
+          <Link to="/Cart">
+            <img src={cart_icon} alt="cart_icon" />
           </Link>
-        )}
-        <Link to="/Cart">
-          <img src={cart_icon} alt="cart_icon" />
-        </Link>
-        <div className="nav-cart-count">{getTotalCartItems()}</div>
+          <div className="nav-cart-count">{getTotalCartItems()}</div>
+        </div>
       </div>
     </div>
   );
