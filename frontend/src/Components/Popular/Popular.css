@@ -74,6 +74,7 @@
 @media screen and (max-width: 500px) {
   .popular {
     height: 90vh;
+    margin-top: -175px;
   }
   .popular-item {
     display: grid;
