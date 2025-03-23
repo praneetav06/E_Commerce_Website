@@ -92,7 +92,7 @@ function Navbar() {
               <a
                 href="#"
                 target="_blank"
-                style={{ textDecoration: "none", color: "#49557e" }}
+                // style={{ textDecoration: "none", color: "#49557e" }}
               >
                 Admin
               </a>
