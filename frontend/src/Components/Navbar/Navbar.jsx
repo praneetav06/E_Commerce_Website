@@ -89,7 +89,10 @@ function Navbar() {
           )}
           {localStorage.getItem("auth-token") ? (
             <button className="admin-panel">
-              <a href="#" target="_blank">
+              <a
+                href="https://e-commerce-website-admin-85du.onrender.com"
+                target="_blank"
+              >
                 Admin
               </a>
             </button>
