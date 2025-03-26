@@ -6,7 +6,7 @@ function Popular() {
   //mount the Popular component in Shop.jsx
   const [popularProducts, setPopularProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4000/popularinwomen")
+    fetch("https://e-commerce-website-backend-a0tk.onrender.com/popularinwomen")
       .then((res) => res.json())
       .then((data) => setPopularProducts(data));
   }, []);

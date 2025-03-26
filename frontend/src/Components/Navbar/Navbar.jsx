@@ -89,11 +89,7 @@ function Navbar() {
           )}
           {localStorage.getItem("auth-token") ? (
             <button className="admin-panel">
-              <a
-                href="#"
-                target="_blank"
-                // style={{ textDecoration: "none", color: "#49557e" }}
-              >
+              <a href="#" target="_blank">
                 Admin
               </a>
             </button>
