@@ -31,6 +31,6 @@ This is a fully functional **E-Commerce Website** built using the **MERN (MongoD
 
 ## Deployment 
 - This website is deployed on Render
-- https://e-commerce-website-frontend-c4fl.onrender.com
-- https://e-commerce-website-backend-1sg4.onrender.com
-- https://e-commerce-website-admin-xxpg.onrender.com
+- https://e-commerce-website-frontend-bz1j.onrender.com
+- https://e-commerce-website-backend-a0tk.onrender.com
+- https://e-commerce-website-admin-85du.onrender.com
